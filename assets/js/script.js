@@ -53,7 +53,7 @@ async function testIPs(ipList, totalIp, timeout, betaVersion) {
         prcNo++;
         let url = `https://${ip}/__down`;
         if ( betaVersion ) {
-            url = `http://${ip}/cdn-cgi/trace`;
+            url = `https://${ip}/cdn-cgi/trace`;
         }
         const startTime = performance.now();
         const controller = new AbortController();
@@ -218,7 +218,7 @@ function getMyIp() {
             }
         }
     });*/
-    $.getJSON('https://api.my-ip.io/ip.json', function(ipData){
+    $.getJSON('http://api.my-ip.io/ip.json', function(ipData){
         if ( ipData['success'] ) {
             return getIpInfo(ipData['ip']);
         }
@@ -234,7 +234,7 @@ function getIpInfo(entry) {
     ipInfo['isProxy'] = false;
     try {
         //$('#providerName').html('<img src="../assets/img/loader.gif" alt="loader" />');
-        $.getJSON("https://ip-api.com/json/"+entry+"?fields=status,countryCode,isp,proxy", function(data){
+        $.getJSON("http://ip-api.com/json/"+entry+"?fields=status,countryCode,isp,proxy", function(data){
             if ( data['status'] === 'success' ) {
                 if ( typeof data['isp'] !== 'null' && data['isp'] !== '' ) {
                     // https://bgp.he.net/country/IR
