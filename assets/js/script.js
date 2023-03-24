@@ -325,4 +325,5 @@ function setOptions() {
         let totalIp = numberWithCommas(cidrToIpArray(p).length);
         $('#ranges').append($('<option></option>').val((p)).html(p+ ' ('+totalIp+' IP)'));
     });
+    document.getElementById('scanBtn').disabled = false;
 }
