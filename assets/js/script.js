@@ -88,6 +88,11 @@ async function testIPs(ipList, totalIp, timeout, betaVersion) {
             clearTimeout(timeoutId);
         }
         const duration = performance.now() - startTime;
+        if ( betaVersion ) {
+            if ( duration <= 200 ) {
+                continue;
+            }
+        }
         if (testResult > 0) {
             validIPs.push({ip: ip, time: Math.floor(duration / 5)});
             const sortedArr = validIPs.sort((a, b) => a.time - b.time);
@@ -188,6 +193,9 @@ $(document).on('change', '#ranges', function(e) {
         if ( value.length !== 1 ) {
             $('#ranges option[value="all"]').prop("selected", false).removeAttr("selected");
         }
+        else {
+            $('input[name="forProvider"]').prop("checked", false);
+        }
         cfIPv4 = [];
         for (let i=0; i<options.length; i++){
             let vl = options[i].value;
@@ -202,6 +210,34 @@ $(document).on('change', '#ranges', function(e) {
     else {
         $('#ranges option[value="all"]').prop("selected", false).removeAttr("selected");
         cfIPv4 = value;
+    }
+});
+
+$(document).on('change', '#forMtn', function(e) {
+    e.preventDefault();
+    cfIPv4 = [];
+    $('#ranges option[value="all"]').prop("selected", false).removeAttr("selected");
+    let options = $('#ranges option');
+    for (let i=0; i<options.length; i++){
+        let vl = options[i].value;
+        if (vl === "") { continue; }
+        if (typeof vl === "null") { continue; }
+        if ( ! vl.startsWith("45.", 0) ) { continue; }
+        cfIPv4.push(vl);
+    }
+});
+
+$(document).on('change', '#forMci', function(e) {
+    e.preventDefault();
+    cfIPv4 = [];
+    $('#ranges option[value="all"]').prop("selected", false).removeAttr("selected");
+    let options = $('#ranges option');
+    for (let i=0; i<options.length; i++){
+        let vl = options[i].value;
+        if (vl === "") { continue; }
+        if (typeof vl === "null") { continue; }
+        if ( ! ['23.', '45.', '63.', '66.', '104.', '108.', '141.', '147.', '159.', '172.', '185.', '188.', '195.'].some((word) => vl.startsWith(word)) ) { continue; }
+        cfIPv4.push(vl);
     }
 });
 
@@ -301,6 +337,10 @@ function getIpInfo(entry) {
                     else if ( data['isp'] === 'Farabord Dadeh Haye Iranian Co.') {
                         ipInfo['providerCode'] = 'ztl';
                         ipInfo['providerName'] = 'زیتل';
+                    }
+                    else if ( data['isp'] === 'Tose\'h Fanavari Ertebabat Pasargad Arian Co PJS') {
+                        ipInfo['providerCode'] = 'arx';
+                        ipInfo['providerName'] = 'آراکس';
                     }
                 }
             }
