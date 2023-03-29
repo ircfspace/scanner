@@ -187,14 +187,12 @@ $(document).on('click', '#download-link', function(e) {
 
 $(document).on('change', '#ranges', function(e) {
     e.preventDefault();
+    $('input[name="forProvider"]').prop("checked", false);
     let value = $(this).val();
     if ( value === 'null' || value.includes('all') ) {
         let options = $('#ranges option');
         if ( value.length !== 1 ) {
             $('#ranges option[value="all"]').prop("selected", false).removeAttr("selected");
-        }
-        else {
-            $('input[name="forProvider"]').prop("checked", false);
         }
         cfIPv4 = [];
         for (let i=0; i<options.length; i++){
