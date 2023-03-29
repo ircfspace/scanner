@@ -196,9 +196,6 @@ footer p {
 		padding-right: 0;
 		padding-left: 0;
 	}
-}
-
-@media(max-width:440px) {
 	.betaVersion.rangeSelector .clearfix {
 		display: block;
 	}
