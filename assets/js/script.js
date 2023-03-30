@@ -283,7 +283,7 @@ function getIpInfo(entry) {
     ipInfo['providerName'] = '';
     ipInfo['isProxy'] = false;
     try {
-        $('#providerName').html('<img src="../assets/img/loader.gif" alt="loader" />');
+        //$('#providerName').html('<img src="../scanner/assets/img/loader.gif" alt="loader" />');
         $.get("https://ipinfo.io/"+entry+"/org?token=86b604fe21f759", function(data) {
             if ( data !== '' ) {
                 // https://bgp.he.net/country/IR
