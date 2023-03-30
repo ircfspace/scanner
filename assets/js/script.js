@@ -291,6 +291,7 @@ function getIpInfo(entry) {
             CORS: true,
             contentType: 'text/html',
             secure: true,
+            cache: false,
             headers: {
                 'Access-Control-Allow-Origin': '*',
             },
