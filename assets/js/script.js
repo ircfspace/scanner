@@ -283,79 +283,81 @@ function getIpInfo(entry) {
     ipInfo['providerName'] = '';
     ipInfo['isProxy'] = false;
     try {
-        //$('#providerName').html('<img src="../assets/img/loader.gif" alt="loader" />');
-        $.getJSON("https://ip-api.com/json/"+entry+"?fields=status,countryCode,isp,proxy", function(data){
-            if ( data['status'] === 'success' ) {
-                if ( typeof data['isp'] !== 'null' && data['isp'] !== '' ) {
-                    // https://bgp.he.net/country/IR
-                    ipInfo['ip'] = data['ip'];
-                    ipInfo['countryCode'] = data['countryCode'];
-                    ipInfo['isProxy'] = data['proxy'];
-                    if ( data['isp'] === 'Hetzner Online GMBH') {
-                        ipInfo['providerCode'] = 'unk';
-                        ipInfo['providerName'] = '';
-                        ipInfo['isProxy'] = true;
-                    }
-                    else if ( data['isp'] === 'Mobin Net Communication Company') {
-                        ipInfo['providerCode'] = 'mbn';
-                        ipInfo['providerName'] = 'مبین‌نت';
-                    }
-                    else if ( data['isp'] === 'Andishe SABZ Khazar Co P.j.s') {
-                        ipInfo['providerCode'] = 'ask';
-                        ipInfo['providerName'] = 'اندیشه‌سبز';
-                    }
-                    else if ( data['isp'] === 'Mobile Communication Company of Iran PLC') {
-                        ipInfo['providerCode'] = 'mci';
-                        ipInfo['providerName'] = 'همراه‌اول';
-                    }
-                    else if ( data['isp'] === 'Iran Cell Service and Communication Company') {
-                        ipInfo['providerCode'] = 'mtn';
-                        ipInfo['providerName'] = 'ایرانسل';
-                    }
-                    else if ( data['isp'] === 'Iran Telecommunication Company PJS') {
-                        ipInfo['providerCode'] = 'mkh';
-                        ipInfo['providerName'] = 'مخابرات';
-                    }
-                    else if ( data['isp'] === 'Rightel Communication Service Company PJS') {
-                        ipInfo['providerCode'] = 'rtl';
-                        ipInfo['providerName'] = 'رایتل';
-                    }
-                    else if ( data['isp'] === 'Aria Shatel Company Ltd') {
-                        ipInfo['providerCode'] = 'sht';
-                        ipInfo['providerName'] = 'شاتل';
-                    }
-                    else if ( data['isp'] === 'Pars Online PJS') {
-                        ipInfo['providerCode'] = 'prs';
-                        ipInfo['providerName'] = 'پارس‌آنلاین';
-                    }
-                    else if ( data['isp'] === 'Asiatech Data Transfer Inc PLC') {
-                        ipInfo['providerCode'] = 'ast';
-                        ipInfo['providerName'] = 'آسیاتک';
-                    }
-                    else if ( data['isp'] === 'Afranet') {
-                        ipInfo['providerCode'] = 'aft';
-                        ipInfo['providerName'] = 'افرانت';
-                    }
-                    else if ( data['isp'] === 'Respina Networks & Beyond PJSC') {
-                        ipInfo['providerCode'] = 'rsp';
-                        ipInfo['providerName'] = 'رسپینا';
-                    }
-                    else if ( data['isp'] === 'Rayaneh Danesh Golestan Complex P.J.S. Co.') {
-                        ipInfo['providerCode'] = 'hwb';
-                        ipInfo['providerName'] = 'های‌وب';
-                    }
-                    else if ( data['isp'] === 'Pishgaman Toseeh Ertebatat Company') {
-                        ipInfo['providerCode'] = 'psm';
-                        ipInfo['providerName'] = 'پیشگامان';
-                    }
-                    else if ( data['isp'] === 'Farabord Dadeh Haye Iranian Co.') {
-                        ipInfo['providerCode'] = 'ztl';
-                        ipInfo['providerName'] = 'زیتل';
-                    }
-                    else if ( data['isp'] === 'Tose\'h Fanavari Ertebabat Pasargad Arian Co PJS') {
-                        ipInfo['providerCode'] = 'arx';
-                        ipInfo['providerName'] = 'آراکس';
-                    }
+        $('#providerName').html('<img src="../assets/img/loader.gif" alt="loader" />');
+        $.get("https://ipinfo.io/"+entry+"/org?token=86b604fe21f759", function(data) {
+            if ( data !== '' ) {
+                // https://bgp.he.net/country/IR
+                ipInfo['ip'] = data['ip'];
+                ipInfo['countryCode'] = data['countryCode'];
+                ipInfo['isProxy'] = data['proxy'];
+                if ( data.includes('Hetzner Online GMBH') ) {
+                    ipInfo['providerCode'] = 'unk';
+                    ipInfo['providerName'] = '';
+                    ipInfo['isProxy'] = true;
+                }
+                else if ( data.includes('Mobin Net Communication Company') ) {
+                    ipInfo['providerCode'] = 'mbn';
+                    ipInfo['providerName'] = 'مبین‌نت';
+                }
+                else if ( data.includes('Andishe SABZ Khazar Co P.j.s') ) {
+                    ipInfo['providerCode'] = 'ask';
+                    ipInfo['providerName'] = 'اندیشه‌سبز';
+                }
+                else if ( data.includes('Mobile Communication Company of Iran PLC') ) {
+                    ipInfo['providerCode'] = 'mci';
+                    ipInfo['providerName'] = 'همراه‌اول';
+                }
+                else if ( data.includes('Iran Cell Service and Communication Company') ) {
+                    ipInfo['providerCode'] = 'mtn';
+                    ipInfo['providerName'] = 'ایرانسل';
+                }
+                else if ( data.includes('Iran Telecommunication Company PJS') ) {
+                    ipInfo['providerCode'] = 'mkh';
+                    ipInfo['providerName'] = 'مخابرات';
+                }
+                else if ( data.includes('Rightel Communication Service Company PJS') ) {
+                    ipInfo['providerCode'] = 'rtl';
+                    ipInfo['providerName'] = 'رایتل';
+                }
+                else if ( data.includes('Aria Shatel Company Ltd') ) {
+                    ipInfo['providerCode'] = 'sht';
+                    ipInfo['providerName'] = 'شاتل';
+                }
+                else if ( data.includes('Pars Online PJS') ) {
+                    ipInfo['providerCode'] = 'prs';
+                    ipInfo['providerName'] = 'پارس‌آنلاین';
+                }
+                else if ( data.includes('Asiatech Data Transfer Inc PLC') ) {
+                    ipInfo['providerCode'] = 'ast';
+                    ipInfo['providerName'] = 'آسیاتک';
+                }
+                else if ( data.includes('Afranet') ) {
+                    ipInfo['providerCode'] = 'aft';
+                    ipInfo['providerName'] = 'افرانت';
+                }
+                else if ( data.includes('Respina Networks & Beyond PJSC') ) {
+                    ipInfo['providerCode'] = 'rsp';
+                    ipInfo['providerName'] = 'رسپینا';
+                }
+                else if ( data.includes('Rayaneh Danesh Golestan Complex P.J.S. Co.') ) {
+                    ipInfo['providerCode'] = 'hwb';
+                    ipInfo['providerName'] = 'های‌وب';
+                }
+                else if ( data.includes('Pishgaman Toseeh Ertebatat Company') ) {
+                    ipInfo['providerCode'] = 'psm';
+                    ipInfo['providerName'] = 'پیشگامان';
+                }
+                else if ( data.includes('Farabord Dadeh Haye Iranian Co.') ) {
+                    ipInfo['providerCode'] = 'ztl';
+                    ipInfo['providerName'] = 'زیتل';
+                }
+                else if ( data.includes('Tose\'h Fanavari Ertebabat Pasargad Arian Co PJS') ) {
+                    ipInfo['providerCode'] = 'arx';
+                    ipInfo['providerName'] = 'آراکس';
+                }
+                else if ( data.includes('Fanava Group') ) {
+                    ipInfo['providerCode'] = 'fnv';
+                    ipInfo['providerName'] = 'فن‌آوا';
                 }
             }
             provider = ipInfo['providerCode'];
