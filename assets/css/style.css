@@ -137,6 +137,12 @@ button {
 	width: 20%!important;
 }
 
+.modalBodyOverflow {
+	max-height: 63vh;
+	overflow: hidden;
+	overflow-y: auto;
+}
+
 img[alt="loader"] {
 	width: 15px;
 	height: 10px;
