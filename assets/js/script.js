@@ -236,7 +236,7 @@ $(document).on('change', '#forMci', function(e) {
         let vl = options[i].value;
         if (vl === "") { continue; }
         if (typeof vl === "null") { continue; }
-        if ( ! ['23.', '45.', '63.', '66.', '104.', '108.', '141.', '147.', '159.', '172.', '185.', '188.', '195.'].some((word) => vl.startsWith(word)) ) { continue; }
+        if ( ! ['108.', '185.', '188.', '195.'].some((word) => vl.startsWith(word)) ) { continue; }
         cfIPv4.push(vl);
     }
 });
