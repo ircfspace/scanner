@@ -375,6 +375,10 @@ function getIpInfo(entry) {
                         ipInfo['providerCode'] = 'fnv';
                         ipInfo['providerName'] = 'فن‌آوا';
                     }
+                    else if ( data.includes('Negin Ertebatate Ava Company PJS') ) {
+                        ipInfo['providerCode'] = 'apt';
+                        ipInfo['providerName'] = 'آپتل';
+                    }
                 }
                 provider = ipInfo['providerCode'];
                 $('#providerName').html(ipInfo['providerName'].toUpperCase());
