@@ -102,7 +102,8 @@ async function testIPs(ipList, totalIp, timeout, betaVersion) {
                     return acc;
                 }
             }, []);
-            const sortedArr = uniqueArr.sort((a, b) => a.time - b.time);
+            let sortedArr = uniqueArr.sort((a, b) => a.time - b.time);
+            //sortedArr = sortedArr.slice(0, 50);
             const tableRows = sortedArr.map((obj, key) => { return `<tr><td>${(key+1)}</td><td class="copyItem" onclick="copyToClipboard('${obj.ip}')">${obj.ip}</td><td>${numberWithCommas(obj.time)} <small>میلی‌ثانیه</small></td></tr>` }).join('\n');
             document.getElementById('result').innerHTML = tableRows;
         }
@@ -228,7 +229,7 @@ $(document).on('change', '#forMtn', function(e) {
         let vl = options[i].value;
         if (vl === "") { continue; }
         if (typeof vl === "null") { continue; }
-        if ( ! vl.startsWith("45.", 0) ) { continue; }
+        if ( ! ['45.', '104.'].some((word) => vl.startsWith(word)) ) { continue; }
         cfIPv4.push(vl);
     }
 });
@@ -242,7 +243,7 @@ $(document).on('change', '#forMci', function(e) {
         let vl = options[i].value;
         if (vl === "") { continue; }
         if (typeof vl === "null") { continue; }
-        if ( ! ['108.', '23.', '45.', '63.', '66.', '104.', '141.', '147.', '159.', '172.', '185.', '188.', '195.'].some((word) => vl.startsWith(word)) ) { continue; }
+        if ( ! ['104.', '108.', '141.', '172.', '185.', '192.', '194.'].some((word) => vl.startsWith(word)) ) { continue; }
         cfIPv4.push(vl);
     }
 });
@@ -382,6 +383,10 @@ function getIpInfo(entry) {
                     else if ( data.includes('Negin Ertebatate Ava Company PJS') ) {
                         ipInfo['providerCode'] = 'apt';
                         ipInfo['providerName'] = 'آپتل';
+                    }
+                    else if ( data.includes('Didehban Net Company PJS') ) {
+                        ipInfo['providerCode'] = 'dbn';
+                        ipInfo['providerName'] = 'دیده‌بان‌نت';
                     }
                 }
                 provider = ipInfo['providerCode'];
