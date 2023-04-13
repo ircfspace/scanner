@@ -274,6 +274,7 @@ $(document).on('change', '#forMtn', function(e) {
             '136.244.87.',
             '140.82.57.',
             '172.64.145.',
+            '172.64.153.',
             '172.66.2.',
             '192.200.160.'
         ].some((word) => vl.startsWith(word)) ) { continue; }
