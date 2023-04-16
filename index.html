@@ -4,7 +4,7 @@
         <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
         <link href="./assets/css/bootstrap-rtl.min.css" rel="stylesheet" />
         <link href="./assets/css/vazir.css" rel="stylesheet" />
-        <link href="./assets/css/style.css?v1.8.9" rel="stylesheet" />
+        <link href="./assets/css/style.css?v1.9" rel="stylesheet" />
         <title>IRCF | اسکنر آی‌پی کلودفلر</title>
         <meta name="description" content="آی پی سالم و تمیز برای کلودفلر (کلادفلر) جهت دسترسی به اینترنت آزاد" />
         <meta name="keywords" content="کلودفلر, کلادفلر, cloudflare, cf, آی پی تمیز, آی پی سالم, اسکن آی پی" />
@@ -179,8 +179,9 @@
                         <a href="https://github.com/vfarid/cf-ip-scanner" target="_blank">این‌سورس</a>
                     </p>
                     <script>
+                        let siteUrl = document.location.href;
                         window.addEventListener('load', function() {
-                            setOptions();
+                            getRanges();
                             getMyIp();
                         });
                     </script>
@@ -189,8 +190,7 @@
                     </div>
                     <script src="./assets/js/jquery.min.js"></script>
                     <script src="./assets/js/bootstrap.min.js"></script>
-                    <script src="./assets/js/ranges.js?v1.8.11"></script>
-                    <script src="./assets/js/script.js?v1.8.10"></script>
+                    <script src="./assets/js/script.js?v1.9"></script>
                 </footer>
             </div>
         </div>

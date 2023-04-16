@@ -509,10 +509,24 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function setOptions() {
-    $.each(cfIPv4, function(i, p) {
-        let totalIp = numberWithCommas(cidrToIpArray(p).length);
-        $('#ranges').append($('<option></option>').val((p)).html(p+ ' ('+totalIp+' IP)'));
+function getRanges() {
+    try {
+        jQuery.get(siteUrl+'ipv4.list', function(data) {
+            data = data.split("\n");
+            setOptions(data);
+        });
+    }
+    catch(err) {
+        console.log(err);
+    }
+}
+
+function setOptions(data) {
+    $.each(data, function(i, p) {
+        if ( p !== '' ) {
+            let totalIp = numberWithCommas(cidrToIpArray(p).length);
+            $('#ranges').append($('<option></option>').val((p)).html(p+ ' ('+totalIp+' IP)'));
+        }
     });
     document.getElementById('scanBtn').disabled = false;
     document.getElementById('newScan').disabled = false;
