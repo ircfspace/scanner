@@ -511,7 +511,7 @@ function numberWithCommas(x) {
 
 function getRanges() {
     try {
-        jQuery.get(siteUrl+'ipv4.list?v1.10.2', function(data) {
+        jQuery.get(siteUrl+'ipv4.list?v1.10.3', function(data) {
             data = data.split("\n");
             setOptions(data);
         });
