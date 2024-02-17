@@ -28,6 +28,7 @@ function startScan() {
     else {
         selectedIPs = ips.slice(0, num);
     }
+    testIPs(selectedIPs, num, ping, beta);
     document.getElementById('scanBtn').disabled = true;
     document.getElementById('tableResults').classList.remove("hidden");
     document.getElementById('process').classList.remove("hidden");
@@ -37,7 +38,6 @@ function startScan() {
     document.getElementById('max-ping').disabled = true;
     document.getElementById('random').disabled = true;
     document.getElementById('beta').disabled = true;
-    testIPs(selectedIPs, num, ping, beta);
 }
 
 let testNo = 0;
@@ -234,71 +234,71 @@ function getIpInfo(entry) {
     ipInfo['isProxy'] = false;
     try {
         //$('#providerName').html('<img src="../assets/img/loader.gif" alt="loader" />');
-        $.getJSON("https://ipinfo.io/"+entry+"?token=86b604fe21f759", function(data, status, xhr){
+        $.getJSON("https://api.ipdata.co/"+entry+"?api-key=9ca2f4c88726785f796482d3cf64be610583773712e3e3dc7b66a21f", function(data, status, xhr){
             if ( status === 'success' ) {
-                if ( data['org'] !== '' ) {
+                if ( typeof data['asn']['name'] !== 'null' && data['asn']['name'] !== '' ) {
                     // https://bgp.he.net/country/IR
                     ipInfo['ip'] = data['ip'];
-                    ipInfo['countryCode'] = data['country'];
-                    ipInfo['isProxy'] = false;
-                    if ( data['org'].includes("Hetzner Online GMBH") ) {
+                    ipInfo['countryCode'] = data['country_code'];
+                    ipInfo['isProxy'] = data['threat']['is_proxy'];
+                    if ( data['asn']['name'] === 'Hetzner Online GMBH') {
                         ipInfo['providerCode'] = 'unk';
                         ipInfo['providerName'] = '';
                         ipInfo['isProxy'] = true;
                     }
-                    else if ( data['org'].includes("Mobin Net Communication Company") ) {
+                    else if ( data['asn']['name'] === 'Mobin Net Communication Company') {
                         ipInfo['providerCode'] = 'mbn';
                         ipInfo['providerName'] = 'مبین‌نت';
                     }
-                    else if ( data['org'].includes("Andishe SABZ Khazar Co P.j.s") ) {
+                    else if ( data['asn']['name'] === 'Andishe SABZ Khazar Co P.j.s') {
                         ipInfo['providerCode'] = 'ask';
                         ipInfo['providerName'] = 'اندیشه‌سبز';
                     }
-                    else if ( data['org'].includes("Mobile Communication Company of Iran PLC") ) {
+                    else if ( data['asn']['name'] === 'Mobile Communication Company of Iran PLC') {
                         ipInfo['providerCode'] = 'mci';
                         ipInfo['providerName'] = 'همراه‌اول';
                     }
-                    else if ( data['org'].includes("Iran Cell Service and Communication Company") ) {
+                    else if ( data['asn']['name'] === 'Iran Cell Service and Communication Company') {
                         ipInfo['providerCode'] = 'mtn';
                         ipInfo['providerName'] = 'ایرانسل';
                     }
-                    else if ( data['org'].includes("Iran Telecommunication Company PJS") ) {
+                    else if ( data['asn']['name'] === 'Iran Telecommunication Company PJS') {
                         ipInfo['providerCode'] = 'mkh';
                         ipInfo['providerName'] = 'مخابرات';
                     }
-                    else if ( data['org'].includes("Rightel Communication Service Company PJS") ) {
+                    else if ( data['asn']['name'] === 'Rightel Communication Service Company PJS') {
                         ipInfo['providerCode'] = 'rtl';
                         ipInfo['providerName'] = 'رایتل';
                     }
-                    else if ( data['org'].includes("Aria Shatel Company Ltd") ) {
+                    else if ( data['asn']['name'] === 'Aria Shatel Company Ltd') {
                         ipInfo['providerCode'] = 'sht';
                         ipInfo['providerName'] = 'شاتل';
                     }
-                    else if ( data['org'].includes("Pars Online PJS") ) {
+                    else if ( data['asn']['name'] === 'Pars Online PJS') {
                         ipInfo['providerCode'] = 'prs';
                         ipInfo['providerName'] = 'پارس‌آنلاین';
                     }
-                    else if ( data['org'].includes("Asiatech Data Transfer Inc PLC") ) {
+                    else if ( data['asn']['name'] === 'Asiatech Data Transfer Inc PLC') {
                         ipInfo['providerCode'] = 'ast';
                         ipInfo['providerName'] = 'آسیاتک';
                     }
-                    else if ( data['org'].includes("Afranet") ) {
+                    else if ( data['asn']['name'] === 'Afranet') {
                         ipInfo['providerCode'] = 'aft';
                         ipInfo['providerName'] = 'افرانت';
                     }
-                    else if ( data['org'].includes("Respina Networks & Beyond PJSC")) {
+                    else if ( data['asn']['name'] === 'Respina Networks & Beyond PJSC') {
                         ipInfo['providerCode'] = 'rsp';
                         ipInfo['providerName'] = 'رسپینا';
                     }
-                    else if ( data['org'].includes("Rayaneh Danesh Golestan Complex P.J.S. Co.") ) {
+                    else if ( data['asn']['name'] === 'Rayaneh Danesh Golestan Complex P.J.S. Co.') {
                         ipInfo['providerCode'] = 'hwb';
                         ipInfo['providerName'] = 'های‌وب';
                     }
-                    else if ( data['org'].includes("Pishgaman Toseeh Ertebatat Company")) {
+                    else if ( data['asn']['name'] === 'Pishgaman Toseeh Ertebatat Company') {
                         ipInfo['providerCode'] = 'psm';
                         ipInfo['providerName'] = 'پیشگامان';
                     }
-                    else if ( data['org'].includes("Farabord Dadeh Haye Iranian Co.")) {
+                    else if ( data['asn']['name'] === 'Farabord Dadeh Haye Iranian Co.') {
                         ipInfo['providerCode'] = 'ztl';
                         ipInfo['providerName'] = 'زیتل';
                     }
