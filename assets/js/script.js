@@ -24,6 +24,7 @@ function startScan() {
     let selectedIPs = getMultipleRandomElements(ips, num);
     testIPs(selectedIPs, num, ping, beta);
     document.getElementById('scanBtn').disabled = true;
+    document.getElementById('newScan').disabled = true;
     document.getElementById('tableResults').classList.remove("hidden");
     document.getElementById('process').classList.remove("hidden");
     document.getElementById('download-text').classList.add("hidden");
@@ -115,17 +116,36 @@ async function testIPs(ipList, totalIp, timeout, betaVersion) {
     }
     else {
         document.getElementById('download-text').classList.add("hidden");
-        document.getElementById('process').classList.add("hidden");
     }
     document.getElementById('process').classList.add("hidden");
     $('#progressBar div').removeClass('progress-bar-striped active').css('width', '100%');
     document.getElementById('scanBtn').disabled = false;
+    document.getElementById('newScan').disabled = false;
     document.getElementById('ranges').disabled = false;
     document.getElementById('download-num').disabled = false;
     document.getElementById('max-ping').disabled = false;
     document.getElementById('random').disabled = false;
     document.getElementById('beta').disabled = false;
     $('input[name="forProvider"]').prop("disabled", false);
+}
+
+function newScan() {
+    testNo = 0;
+    validIPs = [];
+    testResult = 0;
+    document.getElementById('result').innerHTML = "";
+    document.getElementById('download-text').classList.add("hidden");
+    document.getElementById('process').classList.add("hidden");
+    $('#progressBar div').removeClass('progress-bar-striped active').css('width', '100%');
+    document.getElementById('scanBtn').disabled = false;
+    document.getElementById('newScan').disabled = false;
+    document.getElementById('ranges').disabled = false;
+    document.getElementById('download-num').disabled = false;
+    document.getElementById('max-ping').disabled = false;
+    document.getElementById('random').disabled = false;
+    document.getElementById('beta').disabled = false;
+    $('input[name="forProvider"]').prop("disabled", false);
+    startScan();
 }
 
 function cidrToIpArray(cidr) {
@@ -452,4 +472,5 @@ function setOptions() {
         $('#ranges').append($('<option></option>').val((p)).html(p+ ' ('+totalIp+' IP)'));
     });
     document.getElementById('scanBtn').disabled = false;
+    document.getElementById('newScan').disabled = false;
 }

@@ -136,6 +136,39 @@ button {
 .scanner .input-group-btn {
 	width: 20%!important;
 }
+.scanner .input-group-btn .btn-group {
+	float: right;
+	width: 100%;
+}
+.scanner .input-group-btn .btn-group .input-group-btn {
+	float: right;
+	width: auto;
+}
+.scanner .input-group-btn .prmScan {
+	float: right;
+	width: calc(100% - 20px)!important;
+	border-radius: 0!important;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+.scanner .input-group-btn .scanOpt {
+	float: left;
+	width: 20px;
+}
+.scanner .input-group-btn .scanOpt button {
+	float: left;
+	width: 100%!important;
+	padding-right: 0;
+	padding-left: 0;
+	border-radius: 3px 0 0 3px!important;
+}
+.scanner .input-group-btn .scanOpt button .caret {
+	margin: 8px 0 8px -1px;
+}
+.scanner .input-group-btn .scanOpt .dropdown-menu {
+	right: inherit;
+	left: 0;
+}
 
 .modalBodyOverflow {
 	max-height: 63vh;

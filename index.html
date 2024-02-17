@@ -4,7 +4,7 @@
         <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
         <link href="./assets/css/bootstrap-rtl.min.css" rel="stylesheet" />
         <link href="./assets/css/vazir.css" rel="stylesheet" />
-        <link href="./assets/css/style.css?v1.6.5" rel="stylesheet" />
+        <link href="./assets/css/style.css?v1.8.0" rel="stylesheet" />
         <title>IRCF | اسکنر آی‌پی کلودفلر</title>
         <meta name="description" content="آی پی سالم و تمیز برای کلودفلر (کلادفلر) جهت دسترسی به اینترنت آزاد" />
         <meta name="keywords" content="کلودفلر, کلادفلر, cloudflare, cf, آی پی تمیز, آی پی سالم, اسکن آی پی" />
@@ -14,7 +14,7 @@
         <script src="./assets/js/jquery.min.js"></script>
         <script src="./assets/js/bootstrap.min.js"></script>
         <script src="./assets/js/ranges.js?v1.7.5"></script>
-        <script src="./assets/js/script.js?v1.7.5"></script>
+        <script src="./assets/js/script.js?v1.8.0"></script>
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <meta charset="UTF-8" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -79,7 +79,17 @@
                     <span class="input-group-addon">آی‌پی <small>با حداکثر</small> پینگ</span>
                     <input id="max-ping" type="number" min="100" max="3000" step="100" value="1000" class="form-control dirLeft" />
                     <div class="input-group-btn">
-                        <button id="scanBtn" onclick="startScan()" class="btn btn-info" disabled>اسکن</button>
+                        <div class="btn-group">
+                            <button id="scanBtn" onclick="startScan()" class="btn btn-info prmScan" disabled>اسکن</button>
+                            <div class="btn-group scanOpt">
+                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" id="newScan" disabled>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="javascript:;" onclick="newScan();">اسکن تازه</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="betaVersion">
