@@ -4,17 +4,13 @@
         <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
         <link href="./assets/css/bootstrap-rtl.min.css" rel="stylesheet" />
         <link href="./assets/css/vazir.css" rel="stylesheet" />
-        <link href="./assets/css/style.css?v1.8.2" rel="stylesheet" />
+        <link href="./assets/css/style.css?v1.8.9" rel="stylesheet" />
         <title>IRCF | اسکنر آی‌پی کلودفلر</title>
         <meta name="description" content="آی پی سالم و تمیز برای کلودفلر (کلادفلر) جهت دسترسی به اینترنت آزاد" />
         <meta name="keywords" content="کلودفلر, کلادفلر, cloudflare, cf, آی پی تمیز, آی پی سالم, اسکن آی پی" />
         <meta name="robots" content="index,follow,noodp" />
         <meta name="googlebot" content="index,follow" />
         <meta name="theme-color" content="#ff7900" />
-        <script src="./assets/js/jquery.min.js"></script>
-        <script src="./assets/js/bootstrap.min.js"></script>
-        <script src="./assets/js/ranges.js?v1.8.6"></script>
-        <script src="./assets/js/script.js?v1.8.5"></script>
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <meta charset="UTF-8" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -76,7 +72,9 @@
                 </div>
                 <div class="input-group scanner">
                     <input id="download-num" type="number" min="5" max="100" value="10" class="form-control dirLeft" />
-                    <span class="input-group-addon">آی‌پی <small>با حداکثر</small> پینگ</span>
+                    <span class="input-group-addon" data-toggle="tooltip" data-trigger="hover" data-placement="top" title="دفعات تلاش برای یافتن آی‌پی با حداکثر پینگ موردنظر">
+                        <small>تلاش با حداکثر پینگ</small>
+                    </span>
                     <input id="max-ping" type="number" min="100" max="3000" step="100" value="1000" class="form-control dirLeft" />
                     <div class="input-group-btn">
                         <div class="btn-group">
@@ -189,6 +187,10 @@
                     <div class="text-center">
                         <a href="#" class="btn btn-link btn-normal btn-lg btn-outline donateLink" data-toggle="modal" data-target="#donate">☕</a>
                     </div>
+                    <script src="./assets/js/jquery.min.js"></script>
+                    <script src="./assets/js/bootstrap.min.js"></script>
+                    <script src="./assets/js/ranges.js?v1.8.6"></script>
+                    <script src="./assets/js/script.js?v1.8.9"></script>
                 </footer>
             </div>
         </div>

@@ -133,8 +133,11 @@ button {
 	padding-left: 3px;
 	text-align: center;
 }
+.scanner input:first-child {
+	width: 15%!important;
+}
 .scanner .input-group-btn {
-	width: 20%!important;
+	width: 25%!important;
 }
 .scanner .input-group-btn .btn-group {
 	float: right;
@@ -161,6 +164,7 @@ button {
 	padding-right: 0;
 	padding-left: 0;
 	border-radius: 3px 0 0 3px!important;
+	height: 34px;
 }
 .scanner .input-group-btn .scanOpt button .caret {
 	margin: 8px 0 8px -1px;
@@ -169,7 +173,7 @@ button {
 	right: inherit;
 	left: 0;
 	border-radius: 0 0 3px 3px;
-	margin: -1px 0 0 -1px;
+	margin: -1px 0 0 0;
 	width: 139px;
 	min-width: 108px;
 }
@@ -250,5 +254,13 @@ footer p {
 	}
 	.betaVersion.rangeSelector .clearfix {
 		display: block;
+	}
+}
+
+
+@media(max-width:440px) {
+	.scanner .input-group-btn .scanOpt .dropdown-menu {
+		width: 110px;
+		min-width: 110px;
 	}
 }

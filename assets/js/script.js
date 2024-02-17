@@ -58,12 +58,12 @@ async function testIPs(ipList, totalIp, timeout, betaVersion) {
                 controller.abort();
             }, timeout);
             if (ch) {
-                document.getElementById('test-no').innerText = `#${testNo}`;
+                document.getElementById('test-no').innerText = `#${translateDigits(testNo)}`;
                 document.getElementById('ip-no').innerText = ip;
                 document.getElementById('ip-no').style = `color: green`;
                 document.getElementById('ip-try').innerText = ch;
             } else {
-                document.getElementById('test-no').innerText = `#${testNo}`;
+                document.getElementById('test-no').innerText = `#${translateDigits(testNo)}`;
                 document.getElementById('ip-no').innerText = ip;
                 document.getElementById('ip-no').style = `color: red`;
                 document.getElementById('ip-try').innerText = ch;
@@ -105,7 +105,7 @@ async function testIPs(ipList, totalIp, timeout, betaVersion) {
             }, []);
             let sortedArr = uniqueArr.sort((a, b) => a.time - b.time);
             //sortedArr = sortedArr.slice(0, 50);
-            const tableRows = sortedArr.map((obj, key) => { return `<tr><td>${(key+1)}</td><td class="copyItem" onclick="copyToClipboard('${obj.ip}')">${obj.ip}</td><td>${numberWithCommas(obj.time)} <small>میلی‌ثانیه</small></td></tr>` }).join('\n');
+            const tableRows = sortedArr.map((obj, key) => { return `<tr><td>${translateDigits(key+1)}</td><td class="copyItem" onclick="copyToClipboard('${obj.ip}')">${obj.ip}</td><td>${translateDigits(numberWithCommas(obj.time))} <small>میلی‌ثانیه</small></td></tr>` }).join('\n');
             document.getElementById('result').innerHTML = tableRows;
         }
     }
@@ -458,6 +458,49 @@ function getIpInfo(entry) {
     catch(err) {
         console.log(err.message)
     }
+}
+
+function strReplace(search, replace, subject, count) {
+    let i = 0,
+        j = 0,
+        temp = '',
+        repl = '',
+        sl = 0,
+        fl = 0,
+        f = [].concat(search),
+        r = [].concat(replace),
+        s = subject,
+        ra = Object.prototype.toString.call(r) === '[object Array]',
+        sa = Object.prototype.toString.call(s) === '[object Array]';
+    s = [].concat(s);
+    if (count) {
+        this.window[count] = 0;
+    }
+    for (i = 0, sl = s.length; i < sl; i++) {
+        if (s[i] === '') {
+            continue;
+        }
+        for (j = 0, fl = f.length; j < fl; j++) {
+            temp = s[i] + '';
+            repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
+            s[i] = (temp)
+                .split(f[j])
+                .join(repl);
+            if (count && s[i] !== temp) {
+                this.window[count] += (temp.length - s[i].length) / f[j].length;
+            }
+        }
+    }
+    return sa ? s : s[0];
+}
+function translateDigits(string, to) {
+    if (typeof(to) === 'undefined') to = 'fa';
+    let persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    let englishDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    if (to === 'en') {
+        return strReplace(persianDigits, englishDigits, string);
+    }
+    return strReplace(englishDigits, persianDigits, string);
 }
 
 function numberWithCommas(x) {
