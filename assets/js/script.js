@@ -38,6 +38,7 @@ function startScan() {
     document.getElementById('max-ping').disabled = true;
     document.getElementById('random').disabled = true;
     document.getElementById('beta').disabled = true;
+    $('input[name="forProvider"]').prop("disabled", true);
 }
 
 let testNo = 0;
@@ -117,6 +118,7 @@ async function testIPs(ipList, totalIp, timeout, betaVersion) {
     document.getElementById('max-ping').disabled = false;
     document.getElementById('random').disabled = false;
     document.getElementById('beta').disabled = false;
+    $('input[name="forProvider"]').prop("disabled", false);
 }
 
 function cidrToIpArray(cidr) {
