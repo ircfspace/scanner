@@ -168,6 +168,10 @@ button {
 .scanner .input-group-btn .scanOpt .dropdown-menu {
 	right: inherit;
 	left: 0;
+	border-radius: 0 0 3px 3px;
+	margin: -1px 0 0 -1px;
+	width: 139px;
+	min-width: 108px;
 }
 
 .modalBodyOverflow {
