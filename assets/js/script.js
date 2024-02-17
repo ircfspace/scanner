@@ -21,13 +21,7 @@ function startScan() {
     for (let cidr of preSelect) {
         ips = ips.concat(cidrToIpArray(cidr));
     }
-    let selectedIPs;
-    if ( randomized ) {
-        selectedIPs = getMultipleRandomElements(ips, num);
-    }
-    else {
-        selectedIPs = ips.slice(0, num);
-    }
+    let selectedIPs = getMultipleRandomElements(ips, num);
     testIPs(selectedIPs, num, ping, beta);
     document.getElementById('scanBtn').disabled = true;
     document.getElementById('tableResults').classList.remove("hidden");
@@ -96,7 +90,15 @@ async function testIPs(ipList, totalIp, timeout, betaVersion) {
         }
         if (testResult > 0) {
             validIPs.push({ip: ip, time: Math.floor(duration / 5)});
-            const sortedArr = validIPs.sort((a, b) => a.time - b.time);
+            const uniqueArr = validIPs.reduce((acc, current) => {
+                const x = acc.find(item => item.ip === current.ip);
+                if (!x) {
+                    return acc.concat([current]);
+                } else {
+                    return acc;
+                }
+            }, []);
+            const sortedArr = uniqueArr.sort((a, b) => a.time - b.time);
             const tableRows = sortedArr.map((obj, key) => { return `<tr><td>${(key+1)}</td><td class="copyItem" onclick="copyToClipboard('${obj.ip}')">${obj.ip}</td><td>${numberWithCommas(obj.time)} <small>میلی‌ثانیه</small></td></tr>` }).join('\n');
             document.getElementById('result').innerHTML = tableRows;
         }
