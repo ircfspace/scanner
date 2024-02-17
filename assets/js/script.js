@@ -241,6 +241,20 @@ $(document).on('change', '#forMci', function(e) {
     }
 });
 
+$(document).on('change', '#forWarp', function(e) {
+    e.preventDefault();
+    cfIPv4 = [];
+    $('#ranges option[value="all"]').prop("selected", false).removeAttr("selected");
+    let options = $('#ranges option');
+    for (let i=0; i<options.length; i++){
+        let vl = options[i].value;
+        if (vl === "") { continue; }
+        if (typeof vl === "null") { continue; }
+        if ( ! ['162.159.', '188.114.'].some((word) => vl.startsWith(word)) ) { continue; }
+        cfIPv4.push(vl);
+    }
+});
+
 function getMyIp() {
     /*$.get('http://www.cloudflare.com/cdn-cgi/trace', function(data) {
         data = data.split("\n");
