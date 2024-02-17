@@ -266,10 +266,7 @@ $(document).on('change', '#forMtn', function(e) {
         if (vl === "") { continue; }
         if (typeof vl === "null") { continue; }
         if ( ! [
-            '45.76.135.',
-            '45.77.58.',
             '45.85.119.',
-            '45.95.241.',
             '104.18.0.',
             '104.18.5.',
             '104.18.21.',
