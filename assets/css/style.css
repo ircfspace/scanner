@@ -152,7 +152,14 @@ img[alt="loader"] {
 	width: 100%;
 	margin: 10px 0 0 0;
 }
-.betaVersion input[type="checkbox"] {
+.betaVersion.rangeSelector {
+	margin: 0 0 5px 0;
+}
+.betaVersion.rangeSelector .clearfix {
+	display: none;
+}
+.betaVersion input[type="checkbox"],
+.betaVersion input[type="radio"] {
 	float: right;
 	width: 15px;
 	height: 15px;
@@ -161,6 +168,10 @@ img[alt="loader"] {
 .betaVersion label {
 	float: right;
 	font-weight: normal;
+	cursor: pointer;
+}
+.betaVersion.rangeSelector label {
+	margin-left: 20px;
 }
 
 footer {
@@ -184,5 +195,11 @@ footer p {
 	.container {
 		padding-right: 0;
 		padding-left: 0;
+	}
+}
+
+@media(max-width:440px) {
+	.betaVersion.rangeSelector .clearfix {
+		display: block;
 	}
 }
