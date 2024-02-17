@@ -53,7 +53,7 @@ async function testIPs(ipList, totalIp, timeout, betaVersion) {
         prcNo++;
         let url = `https://${ip}/__down`;
         if ( betaVersion ) {
-            url = `https://${ip}/cdn-cgi/trace`;
+            url = `http://${ip}/cdn-cgi/trace`;
         }
         const startTime = performance.now();
         const controller = new AbortController();
@@ -206,7 +206,7 @@ $(document).on('change', '#ranges', function(e) {
 });
 
 function getMyIp() {
-    $.get('https://www.cloudflare.com/cdn-cgi/trace', function(data) {
+    /*$.get('http://www.cloudflare.com/cdn-cgi/trace', function(data) {
         data = data.split("\n");
         if ( data.length > 0 ) {
             for (let i=0; i<data.length; i++){
@@ -216,6 +216,11 @@ function getMyIp() {
                 }
                 return getIpInfo(item[1]);
             }
+        }
+    });*/
+    $.getJSON('https://api.my-ip.io/ip.json\t', function(ipData){
+        if ( ipData['success'] ) {
+            return getIpInfo(ipData['ip']);
         }
     });
 }
