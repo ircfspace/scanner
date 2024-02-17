@@ -34,6 +34,7 @@ function startScan() {
     document.getElementById('random').disabled = true;
     document.getElementById('beta').disabled = true;
     $('input[name="forProvider"]').prop("disabled", true);
+    $('#suggestion').addClass('hidden');
 }
 
 let testNo = 0;
