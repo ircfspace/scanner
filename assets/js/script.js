@@ -289,6 +289,7 @@ $(document).on('change', '#forMtn', function(e) {
         if (typeof vl === "null") { continue; }
         if ( ! [
             '45.85.119.',
+            '66.235.200.',
             '104.18.0.',
             '104.18.5.',
             '104.18.21.',
