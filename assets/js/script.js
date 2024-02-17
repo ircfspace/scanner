@@ -82,14 +82,18 @@ async function testIPs(ipList, totalIp, timeout, betaVersion) {
             }
             clearTimeout(timeoutId);
         }
-        const duration = performance.now() - startTime;
+        let duration = performance.now() - startTime;
+        duration = Math.floor(duration / 5);
+        if ( duration > timeout ) {
+            continue;
+        }
         if ( betaVersion ) {
             if ( duration <= 200 ) {
                 continue;
             }
         }
         if (testResult > 0) {
-            validIPs.push({ip: ip, time: Math.floor(duration / 5)});
+            validIPs.push({ip: ip, time: duration});
             const uniqueArr = validIPs.reduce((acc, current) => {
                 const x = acc.find(item => item.ip === current.ip);
                 if (!x) {
