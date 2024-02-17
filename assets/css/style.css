@@ -15,6 +15,15 @@ button {
 	width: 100%;
 }
 
+p {
+	font-size: 15px;
+	line-height: 27px;
+}
+ul li {
+	font-size: 15px;
+	line-height: 27px;
+}
+
 .navbar {
 	float: right;
 	width: 100%;
