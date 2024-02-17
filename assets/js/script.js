@@ -351,6 +351,7 @@ function getIpInfo(entry) {
             url: "https://geo.ipify.org/api/v2/country?apiKey=at_VLfGVVvN310RgvR9guBL17sPrSLPS&ipAddress="+entry,
             type: 'GET',
             dataType: 'json',
+            async:true,
             success: function (data){
                 if ( data !== '' ) {
                     // https://bgp.he.net/country/IR
