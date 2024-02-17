@@ -220,20 +220,6 @@ $(document).on('change', '#ranges', function(e) {
     }
 });
 
-$(document).on('change', '#forMtn', function(e) {
-    e.preventDefault();
-    cfIPv4 = [];
-    $('#ranges option[value="all"]').prop("selected", false).removeAttr("selected");
-    let options = $('#ranges option');
-    for (let i=0; i<options.length; i++){
-        let vl = options[i].value;
-        if (vl === "") { continue; }
-        if (typeof vl === "null") { continue; }
-        if ( ! ['45.', '104.'].some((word) => vl.startsWith(word)) ) { continue; }
-        cfIPv4.push(vl);
-    }
-});
-
 $(document).on('change', '#forMci', function(e) {
     e.preventDefault();
     cfIPv4 = [];
@@ -243,12 +229,61 @@ $(document).on('change', '#forMci', function(e) {
         let vl = options[i].value;
         if (vl === "") { continue; }
         if (typeof vl === "null") { continue; }
-        if ( ! ['104.', '108.', '141.', '172.', '185.', '192.', '194.'].some((word) => vl.startsWith(word)) ) { continue; }
+        if ( ! [
+            '80.94.83.',
+            '104.17.157.',
+            '104.18.91.',
+            '104.19.205.',
+            '104.19.241.',
+            '104.21.31.',
+            '104.21.71.',
+            '104.26.1.',
+            '104.193.213.',
+            '108.162.194.',
+            '172.64.171.',
+            '172.67.21.',
+            '172.67.70.',
+            '185.59.218.',
+            '188.42.89.',
+            '188.114.96.',
+            '185.18.250.',
+            '194.152.44.',
+            '198.41.209.',
+            '203.23.106.',
+            '203.32.121.'
+        ].some((word) => vl.startsWith(word)) ) { continue; }
         cfIPv4.push(vl);
     }
 });
 
-$(document).on('change', '#forWarp', function(e) {
+$(document).on('change', '#forMtn', function(e) {
+    e.preventDefault();
+    cfIPv4 = [];
+    $('#ranges option[value="all"]').prop("selected", false).removeAttr("selected");
+    let options = $('#ranges option');
+    for (let i=0; i<options.length; i++){
+        let vl = options[i].value;
+        if (vl === "") { continue; }
+        if (typeof vl === "null") { continue; }
+        if ( ! [
+            '45.76.135.',
+            '45.77.58.',
+            '45.85.119.',
+            '45.95.241.',
+            '104.18.0.',
+            '104.18.5.',
+            '104.18.21.',
+            '136.244.87.',
+            '140.82.57.',
+            '172.64.145.',
+            '172.66.2.',
+            '192.200.160.'
+        ].some((word) => vl.startsWith(word)) ) { continue; }
+        cfIPv4.push(vl);
+    }
+});
+
+/*$(document).on('change', '#forWarp', function(e) {
     e.preventDefault();
     cfIPv4 = [];
     $('#ranges option[value="all"]').prop("selected", false).removeAttr("selected");
@@ -260,7 +295,7 @@ $(document).on('change', '#forWarp', function(e) {
         if ( ! ['162.159.', '188.114.'].some((word) => vl.startsWith(word)) ) { continue; }
         cfIPv4.push(vl);
     }
-});
+});*/
 
 function getMyIp() {
     /*$.get('http://www.cloudflare.com/cdn-cgi/trace', function(data) {
