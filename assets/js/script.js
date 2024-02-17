@@ -392,6 +392,10 @@ function getIpInfo(entry) {
                         ipInfo['providerCode'] = 'sht';
                         ipInfo['providerName'] = 'شاتل';
                     }
+                    else if ( data['isp'].includes('Pardis Fanvari Partak Ltd') ) {
+                        ipInfo['providerCode'] = 'sht';
+                        ipInfo['providerName'] = 'شاتل‌موبایل';
+                    }
                     else if ( data['isp'].includes('Pars Online PJS') ) {
                         ipInfo['providerCode'] = 'prs';
                         ipInfo['providerName'] = 'پارس‌آنلاین';
