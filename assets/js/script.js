@@ -218,7 +218,7 @@ function getMyIp() {
             }
         }
     });*/
-    $.getJSON('http://api.my-ip.io/ip.json', function(ipData){
+    $.getJSON('https://api.my-ip.io/ip.json', function(ipData){
         if ( ipData['success'] ) {
             return getIpInfo(ipData['ip']);
         }
@@ -234,7 +234,7 @@ function getIpInfo(entry) {
     ipInfo['isProxy'] = false;
     try {
         //$('#providerName').html('<img src="../assets/img/loader.gif" alt="loader" />');
-        $.getJSON("http://ip-api.com/json/"+entry+"?fields=status,countryCode,isp,proxy", function(data){
+        $.getJSON("https://ip-api.com/json/"+entry+"?fields=status,countryCode,isp,proxy", function(data){
             if ( data['status'] === 'success' ) {
                 if ( typeof data['isp'] !== 'null' && data['isp'] !== '' ) {
                     // https://bgp.he.net/country/IR
