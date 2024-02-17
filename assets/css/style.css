@@ -89,7 +89,9 @@ ul li {
 }
 
 .alert {
-	margin: 20px 0;
+	margin: 20px 0 5px 0;
+	float: right;
+	width: 100%;
 }
 .alert em {
 	font-style: normal;
@@ -237,6 +239,27 @@ img[alt="loader"] {
 .dropdown-menu>.active>a:focus,
 .dropdown-menu>.active>a:hover {
 	background-color: #ff7900;
+}
+
+.suggestion span {
+	font-size: 13px;
+	margin-bottom: 7px;
+	float: right;
+	width: 100%;
+}
+.suggestion span small {
+	font-size: 13px;
+	font-weight: bold;
+}
+.suggestion .label {
+	font-weight: 300;
+	margin: 0 0 3px 3px;
+	float: right;
+	line-height: 18px;
+	padding-top: 3px;
+}
+.suggestion .label.copyItem {
+	cursor: copy;
 }
 
 footer {
