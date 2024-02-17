@@ -443,6 +443,10 @@ function getIpInfo(entry) {
                         ipInfo['providerCode'] = 'dbn';
                         ipInfo['providerName'] = 'دیده‌بان‌نت';
                     }
+                    else if ( data['isp'].includes('Pardazeshgar Ray AZMA Co Ltd') ) {
+                        ipInfo['providerCode'] = 'ryn';
+                        ipInfo['providerName'] = 'رای‌نت';
+                    }
                 }
                 provider = ipInfo['providerCode'];
                 $('#providerName').html(ipInfo['providerName'].toUpperCase());
